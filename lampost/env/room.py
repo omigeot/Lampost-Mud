@@ -7,7 +7,7 @@ from lampost.context.resource import m_requires
 from lampost.datastore.auto import AutoField
 from lampost.datastore.dbo import RootDBO, DBOField, DBOTField
 from lampost.env.movement import Direction
-from lampost.gameops.script import Scriptable
+from lampost.gameops.script import Scriptable, shadow
 from lampost.gameops.display import *
 
 
@@ -115,6 +115,7 @@ class Room(RootDBO, Scriptable):
     def glance(self, source, **_):
         return source.display_line(self.name, ROOM_DISPLAY)
 
+    @shadow
     def entity_enters(self, entity, enter_action, entry_msg=None):
         self.receive_broadcast(entry_msg)
         entity.env = self

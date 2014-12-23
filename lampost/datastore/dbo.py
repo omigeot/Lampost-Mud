@@ -19,7 +19,7 @@ class RootDBO(metaclass=CommonMeta):
             self.dbo_id = str(dbo_id).lower()
 
     def _on_loaded(self):
-        for load_func in reversed(self.load_funcs):
+        for load_func in self.load_funcs:
             load_func(self)
 
     def hydrate(self, dto):
